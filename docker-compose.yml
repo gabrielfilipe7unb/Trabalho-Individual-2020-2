@@ -18,3 +18,14 @@ services:
       - .env
     depends_on:
       - db
+  client:
+    build: ./client
+    ports:
+      - $CLIENT_PORT:$CLIENT_PORT
+    volumes:
+      - ./client:/usr/app
+      - "/usr/app/node_modules"
+    env_file:
+      - .env
+    depends_on:
+      - api
