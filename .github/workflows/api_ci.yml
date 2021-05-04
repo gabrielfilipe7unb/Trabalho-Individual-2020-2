@@ -106,7 +106,7 @@ jobs:
       run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag gabrielfilipe7unb/trabalho-individual-2020-2:api_latest
+      run: docker build . --file Dockerfile --tag gabrielfilipe7/gabrielfilipe7unb/trabalho-individual-2020-2:api_latest
 
     - name: Docker Push
       run: docker push gabrielfilipe7/gabrielfilipe7unb/trabalho-individual-2020-2:api_latest 
