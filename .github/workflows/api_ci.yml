@@ -41,22 +41,22 @@ jobs:
     - name: tests
       run: docker-compose run api python manage.py test
     
-    - name: coverage report
-      run: |
-        docker-compose run api coverage report
-        docker-compose run api coverage run --source="." --omit="manage.py" manage.py test
+  #   - name: coverage report
+  #     run: |
+  #       docker-compose run api coverage report
+  #       docker-compose run api coverage run --source="." --omit="manage.py" manage.py test
 
-  code_quality:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: sonarcloud scan
-        uses: SonarSource/sonarcloud-github-action@v1.4
-        with:
-          projectBaseDir: api
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # code_quality:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: sonarcloud scan
+  #       uses: SonarSource/sonarcloud-github-action@v1.4
+  #       with:
+  #         projectBaseDir: api
+  #       env:
+  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
         
