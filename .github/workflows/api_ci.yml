@@ -3,7 +3,7 @@ name: CI (api)
 on:
   push:
     branches: [ master ]
-    
+
   pull_request:
     branches: [ master ]
 
@@ -37,6 +37,13 @@ jobs:
 
     - name: tests
       run: docker-compose run api python manage.py test
+      working-directory: api
+        env:
+          POSTGRES_USER: myuser
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: myproject
+          DB_HOST: db
+          DB_PORT: 5432
     
   #   - name: coverage report
   #     run: |
