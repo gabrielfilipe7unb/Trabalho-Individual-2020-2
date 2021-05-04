@@ -89,12 +89,12 @@ jobs:
 
   deploy:
 
-    needs: [code_quality_with_sonar, code_quality_with_sonar]
+    needs: [health-check-job, code_quality_with_sonar]
     runs-on: ubuntu-latest
-
     defaults:
       run:
         working-directory: "api/"
+
     steps:
     - uses: actions/checkout@v2
     - name: docker login
