@@ -47,7 +47,7 @@ jobs:
         with:
           projectBaseDir: api
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_API }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN}}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
   #   - name: coverage report
