@@ -20,15 +20,9 @@ jobs:
 
       - name: build
         run: docker-compose up --build -d client
-
-      - name: lint
-        uses: wearerequired/lint-action@v1
-        with:
-          eslint: true
     
       - name: tests
         run: docker-compose run client quasar test --unit jest
-
 
   code_quality_with_sonar:
 
