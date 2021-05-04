@@ -24,6 +24,9 @@ jobs:
       - name: tests
         run: docker-compose run client quasar test --unit jest
 
+      - name: client lint
+        run: docker-compose run client yarn lint
+
   code_quality_with_sonar:
 
     runs-on: ubuntu-latest
