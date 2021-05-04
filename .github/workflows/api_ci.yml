@@ -36,7 +36,7 @@ jobs:
         DB_USER: myuser
         DB_PASSWORD: password
 
-    # if you want to have linter analysis, uncomment this.
+    # if you don't want to have linter analysis, comment this.
     - name: lint
       uses: lgeiger/pyflakes-action@master
 
