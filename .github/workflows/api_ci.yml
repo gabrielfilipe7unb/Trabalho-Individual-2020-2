@@ -26,8 +26,13 @@ jobs:
         pip install -r ./api/requirements.txt
 
     - name: api build
-        run: |
-          docker-compose up --build -d api
+      run: |
+        docker-compose up --build -d api
+      env:
+        DB_HOST: db
+        DB_NAME: myproject
+        DB_USER: myuser
+        DB_PASSWORD: password
 
     - name: tests
       run: docker-compose run api python manage.py test
