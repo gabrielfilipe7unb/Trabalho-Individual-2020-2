@@ -19,7 +19,7 @@ jobs:
           node-version: "14.15.5"
 
       - name: build
-        run: docker-compose up -d client
+        run: docker-compose up --build -d client
 
       - name: tests
         run: docker-compose run client quasar test --unit jest
@@ -40,3 +40,27 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  coverage_and_code_quality_with_cc_and_codev:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+
+    - name: build
+      run: docker-compose up --build -d client
+
+    - name: tests
+      run: docker-compose run client quasar test --unit jest
+
+    - name: coverage report
+      run: docker-compose run client coverage xml
+
+    - name: upload coverage to codecov
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        fail_ci_if_error: true
+        verbose: true

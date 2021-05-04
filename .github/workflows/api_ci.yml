@@ -36,8 +36,9 @@ jobs:
         DB_USER: myuser
         DB_PASSWORD: password
 
-    - name: lint
-      uses: lgeiger/pyflakes-action@master
+    # if you want to have linter analysis, uncomment this.
+    # - name: lint
+    #   uses: lgeiger/pyflakes-action@master
 
     - name: tests
       run: docker-compose run api python manage.py test
