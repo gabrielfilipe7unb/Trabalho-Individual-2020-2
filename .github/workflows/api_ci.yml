@@ -56,7 +56,7 @@ jobs:
     - name: Test & publish code coverage
       uses: paambaati/codeclimate-action@v2.7.5
       env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_TOKEN }}
+        CC_TEST_REPORTER_ID: cae613b841fa24937465ad1f8e29e0f48b1a2f42a6e9d9dc58ab1b5db40cafa1
       with:
         coverageCommand: docker-compose run api coverage xml
         debug: true
