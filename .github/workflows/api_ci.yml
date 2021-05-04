@@ -38,6 +38,18 @@ jobs:
     - name: tests
       run: docker-compose run api python manage.py test
 
+  code_quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: sonarcloud scan
+        uses: SonarSource/sonarcloud-github-action@v1.4
+        with:
+          projectBaseDir: api
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   coverage:
     runs-on: ubuntu-latest
     
@@ -48,30 +60,19 @@ jobs:
       uses: actions/setup-python@master
       with:
         python-version: 3.7
+
     - name: api build
       run: docker-compose up --build -d api
+
     - name: tests
       run: docker-compose run api coverage run manage.py test
-    
-    - name: Test & publish code coverage
-      uses: paambaati/codeclimate-action@v2.7.5
-      env:
-        CC_TEST_REPORTER_ID: cae613b841fa24937465ad1f8e29e0f48b1a2f42a6e9d9dc58ab1b5db40cafa1
-      with:
-        coverageCommand: docker-compose run api coverage xml
-        debug: true
 
-    - name: Upload coverage to Codecov
+    - name: coverage report
+      run: docker-compose run api coverage xml
+
+    - name: upload coverage to codecov
       uses: codecov/codecov-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         fail_ci_if_error: true
         verbose: true
-    
-  #   - name: coverage report
-  #     run: |
-  #       docker-compose run api coverage report
-  #       docker-compose run api coverage run --source="." --omit="manage.py" manage.py test
-
-
-# CODECOV_TOKEN='c6abc053-a1ba-4ab6-942e-1732b2481ff2'
