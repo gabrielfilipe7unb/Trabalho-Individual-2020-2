@@ -33,7 +33,7 @@ jobs:
     - name: tests
       run: docker-compose run api python manage.py test
 
-    - name: sonarcloud scan
+    - name: sonarcloud
       uses: sonarsource/sonarcloud-github-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
