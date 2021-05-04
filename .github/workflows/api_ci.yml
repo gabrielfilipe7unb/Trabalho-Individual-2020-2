@@ -37,13 +37,18 @@ jobs:
 
     - name: tests
       run: docker-compose run api python manage.py test
-      working-directory: api
+
+  code_quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: sonarcloud scan
+        uses: SonarSource/sonarcloud-github-action@v1.4
+        with:
+          projectBaseDir: api
         env:
-          POSTGRES_USER: myuser
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: myproject
-          DB_HOST: db
-          DB_PORT: 5432
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_API }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
   #   - name: coverage report
   #     run: |
