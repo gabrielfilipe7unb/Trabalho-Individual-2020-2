@@ -89,7 +89,7 @@ jobs:
 
   deploy:
 
-    # needs: [health-check-job, code_quality_with_sonar]
+    needs: [health-check-job, code_quality_with_sonar]
     
     runs-on: ubuntu-latest
     
