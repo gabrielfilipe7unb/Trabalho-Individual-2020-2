@@ -90,7 +90,9 @@ jobs:
   deploy:
 
     needs: [health-check-job, code_quality_with_sonar]
+    
     runs-on: ubuntu-latest
+    
     defaults:
       run:
         working-directory: "api/"
@@ -101,10 +103,10 @@ jobs:
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-      run: |
-        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag gabrielfilipe7unb/trabalho-individual-2020-2:api_latest
 
     - name: Docker Push
-      run: docker push gabrielfilipe7unb/trabalho-individual-2020-2:api_latest 
+      run: docker push gabrielfilipe7/gabrielfilipe7unb/trabalho-individual-2020-2:api_latest 
