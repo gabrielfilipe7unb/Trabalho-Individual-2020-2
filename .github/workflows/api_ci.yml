@@ -38,8 +38,9 @@ jobs:
       run: docker-compose run api python manage.py test
     
     - name: coverage report
-      run: docker-compose run api coverage report
-      working-directory: api
+      run: |
+        docker-compose run api coverage report
+        docker-compose run api coverage run --source="." --omit="manage.py" manage.py test
 
   code_quality:
     runs-on: ubuntu-latest
