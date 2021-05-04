@@ -38,8 +38,32 @@ jobs:
     - name: tests
       run: docker-compose run api python manage.py test
 
+  coverage:
+    runs-on: ubuntu-latest
+    name: coverage
+    steps:
+    - uses: actions/checkout@master
+    - name: Setup Python
+      uses: actions/setup-python@master
+      with:
+        python-version: 3.7
+    - name: api build
+      run: docker-compose up --build -d api
+    - name: tests
+      run: docker-compose run api coverage run manage.py test
+    - name: Generate coverage report
+      run: docker-compose run api coverage xml
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        fail_ci_if_error: true
+        verbose: true
     
   #   - name: coverage report
   #     run: |
   #       docker-compose run api coverage report
   #       docker-compose run api coverage run --source="." --omit="manage.py" manage.py test
+
+
+# CODECOV_TOKEN='c6abc053-a1ba-4ab6-942e-1732b2481ff2'
