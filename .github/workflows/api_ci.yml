@@ -40,6 +40,7 @@ jobs:
 
   coverage:
     runs-on: ubuntu-latest
+    
     name: coverage
     steps:
     - uses: actions/checkout@master
@@ -51,8 +52,15 @@ jobs:
       run: docker-compose up --build -d api
     - name: tests
       run: docker-compose run api coverage run manage.py test
-    - name: Generate coverage report
-      run: docker-compose run api coverage xml
+    
+    - name: Test & publish code coverage
+      uses: paambaati/codeclimate-action@v2.7.5
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_TOKEN }}
+      with:
+        coverageCommand: docker-compose run api coverage xml
+        debug: true
+
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
       with:
