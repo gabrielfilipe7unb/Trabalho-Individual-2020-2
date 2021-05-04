@@ -96,15 +96,15 @@ jobs:
       run:
         working-directory: "api/"
     steps:
-      - uses: actions/checkout@v2
-      - name: docker login
-        env:
-          DOCKER_USER: ${{secrets.DOCKER_USER}}
-          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-        run: |
-          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-      - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag gabrielfilipe7unb/trabalho-individual-2020-2:api_latest
+    - uses: actions/checkout@v2
+    - name: docker login
+      env:
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag gabrielfilipe7unb/trabalho-individual-2020-2:api_latest
 
-      - name: Docker Push
-        run: docker push gabrielfilipe7unb/trabalho-individual-2020-2:api_latest 
+    - name: Docker Push
+      run: docker push gabrielfilipe7unb/trabalho-individual-2020-2:api_latest 
