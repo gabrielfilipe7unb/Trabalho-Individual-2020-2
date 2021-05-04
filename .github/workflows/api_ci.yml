@@ -27,7 +27,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r ./api/requirements.txt
 
-    - name: api build
+    - name: build
       run: |
         docker-compose up --build -d api
       env:
@@ -38,28 +38,6 @@ jobs:
 
     - name: tests
       run: docker-compose run api python manage.py test
-
-    - name: stylesheet analysis
-      uses: ricardochaves/python-lint@v1.4.0
-      with:
-        python-root-list: "."
-        use-pylint: false
-        use-pycodestyle: false
-        use-flake8: true
-        use-black: false
-        use-mypy: false
-        use-isort: false
-        extra-pylint-options: ""
-        extra-pycodestyle-options: ""
-        extra-flake8-options: "--max-complexity=10 --max-line-length=127"
-        extra-black-options: ""
-        extra-mypy-options: ""
-        extra-isort-options: ""
-
-    # - name: appi lint
-    #   run: |
-    #       docker-compose run api flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --exclude=env
-    #       docker-compose run api flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics --ignore=F401 --exclude=env
 
   code_quality_with_sonar:
 

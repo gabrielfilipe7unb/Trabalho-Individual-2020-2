@@ -1,0 +1,25 @@
+name: CI (client)
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  
+jobs:
+
+  health-check-job:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14.15.5"
+
+      - name: build
+        run: docker-compose up -d client
+
+      - name: tests
+        run: docker-compose run client quasar test --unit jest
