@@ -115,7 +115,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: heroku.
+      - name: heroku
         uses: gonuit/heroku-docker-deploy@v1.3.2
         with:
           email: ${{ secrets.HEROKU_EMAIL }}
