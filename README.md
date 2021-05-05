@@ -1,5 +1,8 @@
 # Trabalho Individual 2020.2
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=gabrielfilipe7unb_Trabalho-Individual-2020-2&metric=alert_status)](https://sonarcloud.io/dashboard?id=gabrielfilipe7unb_Trabalho-Individual-2020-2)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=gabrielfilipe7unb_Trabalho-Individual-2020-2&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=gabrielfilipe7unb_Trabalho-Individual-2020-2)
+[![codecov](https://codecov.io/gh/gabrielfilipe7unb/Trabalho-Individual-2020-2/branch/master/graph/badge.svg?token=JHSQQJS9IB)](https://codecov.io/gh/gabrielfilipe7unb/Trabalho-Individual-2020-2)
 
 A Gestão de Configuração de Software é parte fundamental no curso de GCES, e dominar os conhecimentos de configuração de ambiente, containerização, virtualização, integração e deploy contínuo tem se tornado cada vez mais necessário para ingressar no mercado de trabalho.
 
