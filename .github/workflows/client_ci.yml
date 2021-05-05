@@ -27,22 +27,23 @@ jobs:
       - name: client lint
         run: docker-compose run client yarn lint
 
-  code_quality_with_sonar:
+  # UNCOMMENT THIS IF YOU WANT TO RUN THE SONAR ANALYSIS
+  # code_quality_with_sonar:
 
-    runs-on: ubuntu-latest
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 0
 
-      - name: sonarcloud scan
-        uses: sonarsource/sonarcloud-github-action@master
-        with:
-          projectBaseDir: client
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  #     - name: sonarcloud scan
+  #       uses: sonarsource/sonarcloud-github-action@master
+  #       with:
+  #         projectBaseDir: client
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   deploy:
 
